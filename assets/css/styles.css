@@ -1,0 +1,109 @@
+/* ========== Reset & Base ========== */
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  --bg:#0b0c10;
+  --card:#111217;
+  --surface:#151821;
+  --text:#e6e8ef;
+  --muted:#a8afc1;
+  --primary:#6ea8fe;
+  --accent:#9b87f5;
+  --success:#48c78e;
+  --warn:#f6c343;
+  --danger:#fa7a7a;
+  --border:1px solid rgba(255,255,255,.08);
+  font-family: system-ui,-apple-system,Segoe UI,Roboto,"ヒラギノ角ゴ ProN","Hiragino Kaku Gothic ProN","游ゴシック",YuGothic,"メイリオ",Meiryo,sans-serif;
+  color:var(--text);
+  background:linear-gradient(180deg,#0b0c10 0%,#0e1016 100%);
+  line-height:1.6;
+}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 16px}
+
+/* ========== Layout ========== */
+.site-header{position:sticky;top:0;z-index:50;background:#0b0c10e6;border-bottom:var(--border);backdrop-filter:saturate(180%) blur(10px)}
+.header-inner{display:flex;gap:16px;align-items:center;justify-content:space-between;padding:14px 0}
+.site-title{font-size:1.1rem;margin:0;font-weight:700}
+.header-actions{display:flex;gap:8px;align-items:center}
+
+.layout{display:grid;grid-template-columns:280px 1fr;gap:20px;max-width:1400px;margin:24px auto;padding:0 16px}
+.sidebar{position:sticky;top:64px;height:calc(100dvh - 80px);overflow:auto;padding:12px;background:var(--surface);border:var(--border);border-radius:12px}
+.side-nav ul{list-style:none;padding:0;margin:0}
+.side-nav li+li{margin-top:6px}
+.side-nav a{display:block;padding:8px 10px;border-radius:8px;color:var(--text)}
+.side-nav a.active,.side-nav a:hover{background:#1e2230}
+
+.content{min-width:0}
+.section{background:var(--card);border:var(--border);border-radius:14px;padding:20px;margin-bottom:20px}
+.section h2{margin-top:0}
+
+/* ========== Components ========== */
+.cards{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+.card{grid-column:span 12;background:var(--surface);border:var(--border);border-radius:12px;padding:16px;box-shadow:0 8px 16px rgba(0,0,0,.2)}
+.card h3{margin-top:0}
+@media(min-width:900px){
+  .card{grid-column:span 4}
+}
+
+.btn{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;border:var(--border);background:#1e2230;color:var(--text);cursor:pointer}
+.btn:hover{background:#23283a}
+.btn-primary{background:linear-gradient(135deg,#6ea8fe,#9b87f5);border:none;color:#0a0b10}
+.btn-secondary{background:#202536}
+.note{color:var(--muted);font-size:.95rem}
+
+/* Heatmap table */
+.table-wrap{overflow:auto}
+.heatmap{width:100%;border-collapse:separate;border-spacing:0}
+.heatmap th,.heatmap td{padding:10px;border-bottom:var(--border);text-align:left;vertical-align:middle}
+.level{display:inline-block;min-width:3.5em;text-align:center;padding:4px 8px;border-radius:999px;font-weight:700}
+.level-0{background:#374151;color:#cdd5e1}
+.level-1{background:#2a364d;color:#cdd5e1}
+.level-2{background:#394b79;color:#dbe4ff}
+.level-3{background:#2f6c5b;color:#d9fbe7}
+.level-4{background:#7a1f2b;color:#ffe5e9}
+
+/* Accordion */
+.accordion summary{list-style:none;cursor:pointer;padding:12px;border-radius:10px;background:#1e2230;border:var(--border);font-weight:700}
+.accordion[open] summary{background:#252b3d}
+.accordion-body{padding:8px 12px}
+.accordion summary::-webkit-details-marker{display:none}
+
+/* Footer */
+.site-footer{padding:24px 0;border-top:var(--border);background:#0b0c10}
+.site-footer p{margin:0;text-align:center;color:var(--muted)}
+
+/* Light theme */
+body.theme-light{
+  --bg:#f7f9fc;
+  --card:#ffffff;
+  --surface:#ffffff;
+  --text:#0b0c10;
+  --muted:#4b5563;
+  --primary:#2457e6;
+  --accent:#7c4dff;
+  --success:#2e7d32;
+  --warn:#b26a00;
+  --danger:#c62828;
+  --border:1px solid rgba(0,0,0,.08);
+  background:#f7f9fc;
+}
+
+/* Print */
+@media print{
+  .sidebar,.site-header,.site-footer{display:none!important}
+  body{background:#fff;color:#000}
+  .layout{grid-template-columns:1fr;padding:0}
+  .section{box-shadow:none;border:1px solid #ccc}
+}
+
+/* Active link highlight */
+.side-nav a.active{outline:2px solid #3b82f6}
+
+/* Small screens */
+@media(max-width:960px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:relative;height:auto}
+  .cards{grid-template-columns:1fr}
+}
